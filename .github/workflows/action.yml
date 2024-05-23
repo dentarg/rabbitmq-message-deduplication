@@ -15,10 +15,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Erlang and Elixir
         run: |
-          wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
-          sudo dpkg -i erlang-solutions_2.0_all.deb
+          sudo add-apt-repository ppa:rabbitmq/rabbitmq-erlang
           sudo apt update
-          sudo apt install -y --allow-downgrades esl-erlang=${{ matrix.erlang }} elixir=${{ matrix.elixir }}
+          sudo apt install -y --allow-downgrades erlang elixir-lang
       - name: Run tests
         run: |
           make current_rmq_ref=${{ matrix.rmqref }}
